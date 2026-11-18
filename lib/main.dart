@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:provider/provider.dart'; // Added Provider import
+import 'package:provider/provider.dart';
 
-// Import your page files
 import 'navigation_provider.dart';
 import 'student_info_page.dart';
 import 'student_records_page.dart';
@@ -10,7 +9,6 @@ import 'category_page.dart';
 
 void main() {
   runApp(
-    // Wrap the app in ChangeNotifierProvider
     ChangeNotifierProvider(
       create: (context) => NavigationProvider(),
       child: const StudentHubApp(),
@@ -43,18 +41,14 @@ class StudentHubApp extends StatelessWidget {
           ),
         ),
       ),
-      // Removed the 'const' keyword here
       home: MainNavigationScreen(),
     );
   }
 }
 
-// Refactored from StatefulWidget to StatelessWidget
 class MainNavigationScreen extends StatelessWidget {
-  // Removed the 'const' keyword here
   MainNavigationScreen({super.key});
 
-  // Removed consts from inside the list to prevent any widget errors
   final List<Widget> _pages = [
     HomePage(),
     StudentInfoPage(),
@@ -64,7 +58,6 @@ class MainNavigationScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    // Watch the current index from the provider
     final currentIndex = context.watch<NavigationProvider>().currentIndex;
 
     return Scaffold(
@@ -120,7 +113,6 @@ class MainNavigationScreen extends StatelessWidget {
       bottomNavigationBar: NavigationBar(
         selectedIndex: currentIndex,
         onDestinationSelected: (index) {
-          // Update state using the provider method
           context.read<NavigationProvider>().updateIndex(index);
         },
         destinations: const [
@@ -150,7 +142,6 @@ class MainNavigationScreen extends StatelessWidget {
   }
 }
 
-// HomePage remains exactly the same as the previous version
 class HomePage extends StatelessWidget {
   const HomePage({super.key});
 
@@ -211,7 +202,7 @@ class HomePage extends StatelessWidget {
                   ),
                   fit: BoxFit.cover,
                   colorFilter: ColorFilter.mode(
-                    Colors.black.withOpacity(0.6),
+                    Colors.black.withValues(alpha: 0.6), // Fixed withValues
                     BlendMode.darken,
                   ),
                 ),

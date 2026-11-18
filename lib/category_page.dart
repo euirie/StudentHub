@@ -56,7 +56,11 @@ class _CategoryContent extends StatelessWidget {
       child: Column(
         mainAxisAlignment: MainAxisAlignment.center,
         children: [
-          Icon(icon, size: 80, color: Colors.orangeAccent.withOpacity(0.5)),
+          Icon(
+            icon,
+            size: 80,
+            color: Colors.orangeAccent.withValues(alpha: 0.5),
+          ), // Fixed withValues
           const SizedBox(height: 16),
           Text(
             title,
