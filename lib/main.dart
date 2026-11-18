@@ -5,6 +5,8 @@ import 'package:provider/provider.dart'; // Added Provider import
 import 'navigation_provider.dart';
 import 'student_info_page.dart';
 import 'student_records_page.dart';
+import 'profile_page.dart';
+import 'category_page.dart';
 
 void main() {
   runApp(
@@ -32,7 +34,6 @@ class StudentHubApp extends StatelessWidget {
           secondary: Colors.orangeAccent,
           tertiary: Color(0xFFFFD1A9),
           surface: Color(0xFF1E1E2C),
-          background: Color(0xFF12121A),
         ),
         cardTheme: CardThemeData(
           color: const Color(0xFF2A2A3D),
@@ -42,16 +43,19 @@ class StudentHubApp extends StatelessWidget {
           ),
         ),
       ),
-      home: const MainNavigationScreen(),
+      // Removed the 'const' keyword here
+      home: MainNavigationScreen(),
     );
   }
 }
 
 // Refactored from StatefulWidget to StatelessWidget
 class MainNavigationScreen extends StatelessWidget {
-  const MainNavigationScreen({super.key});
+  // Removed the 'const' keyword here
+  MainNavigationScreen({super.key});
 
-  final List<Widget> _pages = const [
+  // Removed consts from inside the list to prevent any widget errors
+  final List<Widget> _pages = [
     HomePage(),
     StudentInfoPage(),
     StudentRecordsPage(),
