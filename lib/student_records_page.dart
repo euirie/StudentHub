@@ -40,11 +40,17 @@ class _StudentRecordsPageState extends State<StudentRecordsPage> {
   }
 
   // Requirement: Ascending and descending sorting functionality
-  void _sort<T>(Comparable<T> Function(StudentRecord r) getField, int columnIndex, bool ascending) {
+  void _sort<T>(
+    Comparable<T> Function(StudentRecord r) getField,
+    int columnIndex,
+    bool ascending,
+  ) {
     _records.sort((a, b) {
       final aValue = getField(a);
       final bValue = getField(b);
-      return ascending ? Comparable.compare(aValue, bValue) : Comparable.compare(bValue, aValue);
+      return ascending
+          ? Comparable.compare(aValue, bValue)
+          : Comparable.compare(bValue, aValue);
     });
     setState(() {
       _sortColumnIndex = columnIndex;
@@ -64,26 +70,30 @@ class _StudentRecordsPageState extends State<StudentRecordsPage> {
             child: DataTable(
               sortColumnIndex: _sortColumnIndex,
               sortAscending: _isAscending,
-              headingTextStyle: const TextStyle(fontWeight: FontWeight.bold, color: Colors.orangeAccent),
+              headingTextStyle: const TextStyle(
+                fontWeight: FontWeight.bold,
+                color: Colors.orangeAccent,
+              ),
               // Requirement: At least four columns
               columns: [
                 DataColumn(
                   label: const Text('Name'),
-                  onSort: (columnIndex, ascending) => _sort<String>((r) => r.name, columnIndex, ascending),
+                  onSort: (columnIndex, ascending) =>
+                      _sort<String>((r) => r.name, columnIndex, ascending),
                 ),
                 DataColumn(
                   label: const Text('Matric No.'),
                   numeric: true,
-                  onSort: (columnIndex, ascending) => _sort<num>((r) => r.matric, columnIndex, ascending),
+                  onSort: (columnIndex, ascending) =>
+                      _sort<num>((r) => r.matric, columnIndex, ascending),
                 ),
                 DataColumn(
                   label: const Text('CGPA'),
                   numeric: true,
-                  onSort: (columnIndex, ascending) => _sort<num>((r) => r.cgpa, columnIndex, ascending),
+                  onSort: (columnIndex, ascending) =>
+                      _sort<num>((r) => r.cgpa, columnIndex, ascending),
                 ),
-                const DataColumn(
-                  label: Text('Status'),
-                ),
+                const DataColumn(label: Text('Status')),
               ],
               rows: _records.map((record) {
                 return DataRow(
@@ -94,22 +104,33 @@ class _StudentRecordsPageState extends State<StudentRecordsPage> {
                       Text(
                         record.cgpa.toStringAsFixed(2),
                         style: TextStyle(
-                          color: record.cgpa >= 3.5 ? Colors.greenAccent : Colors.white,
-                          fontWeight: record.cgpa >= 3.5 ? FontWeight.bold : FontWeight.normal,
+                          color: record.cgpa >= 3.5
+                              ? Colors.greenAccent
+                              : Colors.white,
+                          fontWeight: record.cgpa >= 3.5
+                              ? FontWeight.bold
+                              : FontWeight.normal,
                         ),
                       ),
                     ),
                     DataCell(
                       Container(
-                        padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 4),
+                        padding: const EdgeInsets.symmetric(
+                          horizontal: 8,
+                          vertical: 4,
+                        ),
                         decoration: BoxDecoration(
-                          color: record.status == 'Active' ? Colors.green.withValues(alpha: 0.2) : Colors.red.withValues(alpha: 0.2),
+                          color: record.status == 'Active'
+                              ? Colors.green.withValues(alpha: 0.2)
+                              : Colors.red.withValues(alpha: 0.2),
                           borderRadius: BorderRadius.circular(12),
                         ),
                         child: Text(
                           record.status,
                           style: TextStyle(
-                            color: record.status == 'Active' ? Colors.greenAccent : Colors.redAccent,
+                            color: record.status == 'Active'
+                                ? Colors.greenAccent
+                                : Colors.redAccent,
                             fontSize: 12,
                           ),
                         ),
