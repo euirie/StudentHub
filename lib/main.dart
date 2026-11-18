@@ -5,8 +5,6 @@ import 'package:provider/provider.dart'; // Added Provider import
 import 'navigation_provider.dart';
 import 'student_info_page.dart';
 import 'student_records_page.dart';
-import 'profile_page.dart';
-import 'category_page.dart';
 
 void main() {
   runApp(
