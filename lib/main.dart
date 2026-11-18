@@ -2,11 +2,10 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart'; // Added Provider import
 
 // Import your page files
-import 'navigation_provider.dart'; 
-import 'student_info_page.dart';
-import 'student_records_page.dart';
+import 'navigation_provider.dart';
 import 'profile_page.dart';
-import 'category_page.dart';
+import 'student_info_page.dart';
+import 'student_records_page.dart'; 
 
 void main() {
   runApp(
@@ -32,8 +31,8 @@ class StudentHubApp extends StatelessWidget {
         colorScheme: const ColorScheme.dark(
           primary: Colors.pinkAccent,
           secondary: Colors.orangeAccent,
-          tertiary: Color(0xFFFFD1A9), 
-          surface: Color(0xFF1E1E2C),  
+          tertiary: Color(0xFFFFD1A9),
+          surface: Color(0xFF1E1E2C),
           background: Color(0xFF12121A),
         ),
         cardTheme: CardThemeData(
@@ -55,9 +54,9 @@ class MainNavigationScreen extends StatelessWidget {
 
   final List<Widget> _pages = const [
     HomePage(),
-    StudentInfoPage(), 
+    StudentInfoPage(),
     StudentRecordsPage(),
-    ProfilePage(), 
+    ProfilePage(),
   ];
 
   @override
@@ -67,7 +66,10 @@ class MainNavigationScreen extends StatelessWidget {
 
     return Scaffold(
       appBar: AppBar(
-        title: const Text('StudentHub', style: TextStyle(fontWeight: FontWeight.bold)),
+        title: const Text(
+          'StudentHub',
+          style: TextStyle(fontWeight: FontWeight.bold),
+        ),
         centerTitle: true,
         backgroundColor: Colors.transparent,
         elevation: 0,
@@ -85,18 +87,23 @@ class MainNavigationScreen extends StatelessWidget {
               ),
               child: Text(
                 'StudentHub Menu',
-                style: TextStyle(color: Colors.white, fontSize: 24, fontWeight: FontWeight.bold),
+                style: TextStyle(
+                  color: Colors.white,
+                  fontSize: 24,
+                  fontWeight: FontWeight.bold,
+                ),
               ),
             ),
             ListTile(
               leading: const Icon(Icons.category, color: Colors.orangeAccent),
               title: const Text('Programmes / Categories'),
               onTap: () {
-                Navigator.pop(context); 
-                Navigator.push(
-                  context,
-                  MaterialPageRoute(builder: (context) => const CategoryPage()),
-                );
+                Navigator.pop(context);
+                // DITUTUP SEMENTARA SEBAB FAIL TIADA
+                // Navigator.push(
+                //   context,
+                //   MaterialPageRoute(builder: (context) => const CategoryPage()),
+                // );
               },
             ),
             ListTile(
@@ -115,10 +122,26 @@ class MainNavigationScreen extends StatelessWidget {
           context.read<NavigationProvider>().updateIndex(index);
         },
         destinations: const [
-          NavigationDestination(icon: Icon(Icons.home_outlined), selectedIcon: Icon(Icons.home), label: 'Home'),
-          NavigationDestination(icon: Icon(Icons.people_outline), selectedIcon: Icon(Icons.people), label: 'Students'),
-          NavigationDestination(icon: Icon(Icons.table_chart_outlined), selectedIcon: Icon(Icons.table_chart), label: 'Records'),
-          NavigationDestination(icon: Icon(Icons.person_outline), selectedIcon: Icon(Icons.person), label: 'Profile'),
+          NavigationDestination(
+            icon: Icon(Icons.home_outlined),
+            selectedIcon: Icon(Icons.home),
+            label: 'Home',
+          ),
+          NavigationDestination(
+            icon: Icon(Icons.people_outline),
+            selectedIcon: Icon(Icons.people),
+            label: 'Students',
+          ),
+          NavigationDestination(
+            icon: Icon(Icons.table_chart_outlined),
+            selectedIcon: Icon(Icons.table_chart),
+            label: 'Records',
+          ),
+          NavigationDestination(
+            icon: Icon(Icons.person_outline),
+            selectedIcon: Icon(Icons.person),
+            label: 'Profile',
+          ),
         ],
       ),
     );
@@ -138,7 +161,11 @@ class HomePage extends StatelessWidget {
         children: [
           const Text(
             'Welcome back, Admin!',
-            style: TextStyle(fontSize: 28, fontWeight: FontWeight.bold, color: Colors.white),
+            style: TextStyle(
+              fontSize: 28,
+              fontWeight: FontWeight.bold,
+              color: Colors.white,
+            ),
           ),
           const SizedBox(height: 8),
           Text(
@@ -176,16 +203,25 @@ class HomePage extends StatelessWidget {
               decoration: BoxDecoration(
                 color: const Color(0xFF2A2A3D),
                 borderRadius: BorderRadius.circular(16),
-                image: DecorationImage( 
-                  image: const NetworkImage('https://images.unsplash.com/photo-1522202176988-66273c2fd55f?q=80&w=800&auto=format&fit=crop'),
+                image: DecorationImage(
+                  image: const NetworkImage(
+                    'https://images.unsplash.com/photo-1522202176988-66273c2fd55f?q=80&w=800&auto=format&fit=crop',
+                  ),
                   fit: BoxFit.cover,
-                  colorFilter: ColorFilter.mode(Colors.black.withOpacity(0.6), BlendMode.darken),
+                  colorFilter: ColorFilter.mode(
+                    Colors.black.withOpacity(0.6),
+                    BlendMode.darken,
+                  ),
                 ),
               ),
               child: const Center(
                 child: Text(
                   'Campus Overview',
-                  style: TextStyle(fontSize: 24, fontWeight: FontWeight.bold, color: Colors.white),
+                  style: TextStyle(
+                    fontSize: 24,
+                    fontWeight: FontWeight.bold,
+                    color: Colors.white,
+                  ),
                 ),
               ),
             ),
@@ -195,7 +231,13 @@ class HomePage extends StatelessWidget {
     );
   }
 
-  Widget _buildSummaryCard(BuildContext context, {required String title, required String value, required IconData icon, required Color iconColor}) {
+  Widget _buildSummaryCard(
+    BuildContext context, {
+    required String title,
+    required String value,
+    required IconData icon,
+    required Color iconColor,
+  }) {
     return Card(
       child: Padding(
         padding: const EdgeInsets.all(16.0),
@@ -206,7 +248,11 @@ class HomePage extends StatelessWidget {
             const SizedBox(height: 16),
             Text(
               value,
-              style: const TextStyle(fontSize: 24, fontWeight: FontWeight.bold, color: Colors.white),
+              style: const TextStyle(
+                fontSize: 24,
+                fontWeight: FontWeight.bold,
+                color: Colors.white,
+              ),
             ),
             const SizedBox(height: 4),
             Text(
