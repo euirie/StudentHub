@@ -1,3 +1,4 @@
+// ignore_for_file: deprecated_member_use
 import 'package:flutter/material.dart';
 
 class CategoryPage extends StatelessWidget {
@@ -6,7 +7,7 @@ class CategoryPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return DefaultTabController(
-      length: 3, 
+      length: 3,
       child: Scaffold(
         appBar: AppBar(
           title: const Text('Academic Programmes'),
@@ -25,9 +26,18 @@ class CategoryPage extends StatelessWidget {
         ),
         body: const TabBarView(
           children: [
-            _CategoryContent(title: 'Software Engineering Students', icon: Icons.code),
-            _CategoryContent(title: 'Network Computing Students', icon: Icons.wifi),
-            _CategoryContent(title: 'Cognitive Science Students', icon: Icons.psychology),
+            _CategoryContent(
+              title: 'Software Engineering Students',
+              icon: Icons.code,
+            ),
+            _CategoryContent(
+              title: 'Network Computing Students',
+              icon: Icons.wifi,
+            ),
+            _CategoryContent(
+              title: 'Cognitive Science Students',
+              icon: Icons.psychology,
+            ),
           ],
         ),
       ),
@@ -47,11 +57,19 @@ class _CategoryContent extends StatelessWidget {
       child: Column(
         mainAxisAlignment: MainAxisAlignment.center,
         children: [
-          Icon(icon, size: 80, color: Colors.orangeAccent.withOpacity(0.5)),
+          Icon(
+            icon,
+            size: 80,
+            color: Colors.orangeAccent.withValues(alpha: 0.5),
+          ), // Fixed withValues
           const SizedBox(height: 16),
           Text(
             title,
-            style: const TextStyle(fontSize: 22, fontWeight: FontWeight.bold, color: Colors.white),
+            style: const TextStyle(
+              fontSize: 22,
+              fontWeight: FontWeight.bold,
+              color: Colors.white,
+            ),
           ),
           const SizedBox(height: 8),
           const Text(
